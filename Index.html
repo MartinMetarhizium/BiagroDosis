@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        #center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 40vh;
+            gap: 1vh;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #333;
+            padding: 2vh;
+        }
+        h2, h4 {
+            text-align: center;
+            color: #333;
+            margin: 0;
+        }
+        .button {
+            padding: 1vh 2vh;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            background-color: white;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #333;
+            color: white;
+        }
+        .button:active {
+            transform: scale(0.95);
+        }
+        .button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #333;
+        }
+        label {
+            display: none;
+            text-align: center;
+            max-width: 80%;
+            font-weight: 500;
+        }
+        body {
+          background-color: #f2f2f2;
+          background-image: url(BIAGRO.jpg);
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #333;
+          padding: 2rem;
+        }
+        .container {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 2rem;
+          text-align: center;
+        }
+        .card {
+          background-color: #fff;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+          overflow: hidden;
+          margin: 2rem 0;
+        }
+        .card img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+        .card h3 {
+          font-size: 24px;
+          font-weight: bold;
+          margin: 1rem;
+          color: #333;
+        }
+        .card p {
+          font-size: 16px;
+          margin: 1rem;
+          color: #777;
+        }
+        footer {
+          background-color: #333;
+          color: #fff;
+          padding: 1rem;
+          text-align: center;
+        }
+    </style>
+    <title>BIAGROCalc</title>
+</head>
+<body>
+    <!-- Contenedor para poder crear un flexblox y que la pagina sea relativamente responsive -->
+    <div id="center">
+        <div id="container">
+            <!-- Titulo -->
+            <h2>Bienvenido a BIAGROcalc</h2>
+            <!-- Combo box con los cultivos que se pueden cultivar -->
+            <h4>Cultivo a calcular</h4>
+            <select name="cultivo" id="cultivo">
+                <option value="soja">Soja (Glycine max)</option>
+                <option value="cultivos_hidroponicos">Cultivos hidroponicos</option>
+                <option value="pimiento">Pimiento (Capsicum annuum)</option>
+                <option value="maiz">Maíz (Zea Mays)</option>
+                <option value="alfalfa">Alfalfa (Medicago sativa)</option>
+                <option value="lotus_subbiflorus">Lotus subbiflorus</option>
+                <option value="lotus_corniculatus">Lotus corniculatus</option>
+                <option value="trebol_blanco">Trebol blanco (Trifolium repens)</option>
+                <option value="trebol_rojo">Trebol rojo (Trifolium pratense)</option>
+                <option value="poroto">Poroto (Phaseolus vulgaris)</option>
+                <option value="poroto_mung">Poroto mung (Vigna radiata)</option>
+                <option value="garbanzo">Garbanzo (Cicer arietinum)</option>
+                <option value="arveja">Arveja (Pisum sativum)</option>
+                <option value="mani">Mani (Arachis hypogaea)</option>
+                <option value="marihuana">Marihuana (Cannabis sativa)</option>
+            </select>
+            <!-- Distintos tipos de checkbox. No importa que no se usen todos por ahora, lo vamos a seleccionar con el JQuery -->
+            <label id="aditivo_tl">
+                <input type="checkbox" id="aditivo_tl_cb">
+                ¿Usar TL?
+            </label>
+            <label id="aditivo_10_poroto">
+                <input type="checkbox" id="aditivo_10_poroto_cb">
+                ¿Usar BIAGRO 10 POROTO?
+            </label>
+            <label id="aditivo_liquido">
+                <input type="checkbox" id="aditivo_liquido_cb">
+                ¿Usar BIAGRO LIQUIDO?
+            </label>
+            <label id="aditivo_prosol">
+                <input type="checkbox" id="aditivo_prosol_cb">
+                ¿Usar PROSOL?
+            </label>
+            <label id="aditivo_poroto">
+                <input type="checkbox" id="aditivo_poroto_cb">
+                ¿Usar BIAGRO LIQUIDO POROTO?
+            </label>
+            <label id="aditivo_10_garbanzo">
+                <input type="checkbox" id="aditivo_10_garbanzo_cb">
+                ¿Usar BIAGRO 10 GARBANZO?
+            </label>
+            <label id="aditivo_az">
+                <input type="checkbox" id="aditivo_az_cb">
+                ¿Usar AZ?
+            </label>
+            <label id="aditivo_alfalfa">
+                <input type="checkbox" id="aditivo_alfalfa_cb">
+                ¿Usar BIAGRO LIQUIDO ALFALFA?
+            </label>
+            <label id="aditivo_arveja">
+                <input type="checkbox" id="aditivo_arveja_cb">
+                ¿Usar BIAGRO LIQUIDO ARVEJA?
+            </label>
+            <label id="aditivo_poroto_mung">
+                <input type="checkbox" id="aditivo_poroto_mung_cb">
+                ¿Usar BIAGRO LIQUIDO POROTO MUNG?
+            </label>
+            <label id="aditivo_trebol">
+                <input type="checkbox" id="aditivo_trebol_cb">
+                ¿Usar BIAGRO LIQUIDO TREBOL?
+            </label>
+            <label id="aditivo_lotus">
+                <input type="checkbox" id="aditivo_lotus_cb">
+                ¿Usar BIAGRO LIQUIDO LOTUS?
+            </label>
+            <label id="aditivo_lotus_subbiflorus">
+                <input type="checkbox" id="aditivo_lotus_subbiflorus_cb">
+                ¿Usar BIAGRO LIQUIDO LOTUS SUBBIFLORUS?
+            </label>
+            <label id="aditivo_10_soja">
+                <input type="checkbox" id="aditivo_10_soja_cb">
+                ¿Usar BIAGRO 10 SOJA?
+            </label>
+            <label id="aditivo_10_mani">
+                <input type="checkbox" id="aditivo_10_mani_cb">
+                ¿Usar BIAGRO 10 MANI?
+            </label>
+            <label id="aditivo_10_lotus">
+                <input type="checkbox" id="aditivo_10_lotus_cb">
+                ¿Usar BIAGRO 10 LOTUS?
+            </label>
+            <label id="aditivo_10_lotus_subbiflorus">
+                <input type="checkbox" id="aditivo_10_lotus_subbiflorus_cb">
+                ¿Usar BIAGRO 10 LOTUS SUBBIFLORUS?
+            </label>
+            <label id="aditivo_10_poroto_mung">
+                <input type="checkbox" id="aditivo_10_poroto_mung_cb">
+                ¿Usar BIAGRO 10 POROTO MUNG?
+            </label>
+            <label id="aditivo_10_trebol">
+                <input type="checkbox" id="aditivo_10_trebol_cb">
+                ¿Usar BIAGRO 10 TREBOL?
+            </label>
+            <label id="aditivo_10_arveja">
+                <input type="checkbox" id="aditivo_10_arveja_cb">
+                ¿Usar BIAGRO 10 ARVEJA?
+            </label>
+            <!-- Input del usuario de los kilos de semilla. El step hace que el incrementable sea de a poquito -->
+            <h4>Kilogramos de semilla</h4>
+            <input type="number" id="semilla" step="0.01">
+            <!-- Boton para limpiar toda la calculadora y volver a iniciar -->
+            <div class="button" style="border: red 5px solid;" id="limpiar">Limpiar la calculadora</div>
+            <!-- "Boton" para calcular el resultado. Es un div, pero personalmente uso divs en vez de botones -->
+            <div class="button" style="border: green 5px solid;" id="calcular">Calcular el resultado</div>
+            <div id="resultado"></div>
+        </div>
+    </div>
+    <!-- Aca tenemos el codigo de la pagina -->
+    <script>
+        // Seteamos el valor del checkbox a nada, para que quede limpio
+        $("#cultivo").val("").change()
+        // Definimos los labeles de los aditivos
+        const labels = {
+            ["aditivo_tl"]: "TL",
+            ["aditivo_prosol"]: "PROSOL",
+            ["aditivo_az"]: "AZ",
+            ["aditivo_alfalfa"]: "BIAGRO LIQUIDO ALFALFA",
+            ["aditivo_liquido"]: "BIAGRO LIQUIDO",
+            ["aditivo_lotus"]: "BIAGRO LIQUIDO LOTUS",
+            ["aditivo_poroto"]: "BIAGRO LIQUIDO POROTO",
+            ["aditivo_poroto_mung"]: "BIAGRO LIQUIDO POROTO MUNG",
+            ["aditivo_trebol"]: "BIAGRO LIQUIDO TREBOL",
+            ["aditivo_garbanzo"]: "BIAGRO LIQUIDO GARBANZO",
+            ["aditivo_arveja"]: "BIAGRO LIQUIDO ARVEJA",
+            ["aditivo_lotus_subbiflorus"]: "BIAGRO LIQUIDO LOTUS SUBBIFLORUS",
+            ["aditivo_10_lotus"]: "BIAGRO 10 LOTUS",
+            ["aditivo_10_lotus_subbiflorus"]: "BIAGRO 10 LOTUS SUBBIFLORUS",
+            ["aditivo_10_poroto"]: "BIAGRO 10 POROTO",
+            ["aditivo_10_poroto_mung"]: "BIAGRO 10 POROTO MUNG",
+            ["aditivo_10_trebol"]: "BIAGRO 10 TREBOL",
+            ["aditivo_10_arveja"]: "BIAGRO 10 ARVEJA",
+            ["aditivo_10_soja"]: "BIAGRO 10 SOJA",
+            ["aditivo_10_garbanzo"]: "BIAGRO 10 GARBANZO",
+            ["aditivo_10_mani"]: "BIAGRO 10 MANI",
+        }
+        // Creamos la funcion para ver si son litros o mililitros
+        const litros_o_mililitros = function(cantidad) {
+            if ((cantidad / 1000) > 1) {
+                return `${Math.floor((cantidad / 1000)*100)/100} litros`
+            } else {
+                return `${cantidad} mililitros`
+            }
+        }
+        // Creamos un mapa de Javascript
+        const cultivos = new Map()
+        // Añadimos la entrada por cada cultivo. Esto es programacion "flexible". Podes poner la cantidad de cultivos que quieras y el calculo de cada
+        // semilla puede ser distinto en cada cultivo. Asi mismo, los cultivos pueden tener los aditivos que sean necesarios
+        cultivos.set("soja", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_10_soja", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 0.4
+                }},
+                {id: "aditivo_liquido", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }}
+            ]
+        })
+        cultivos.set("mani", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_10_mani", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 0.4
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }}
+            ]
+        })
+        cultivos.set("maiz", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }},
+                {id: "aditivo_az", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }}
+            ]
+        })
+        cultivos.set("alfalfa", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_alfalfa", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }}
+            ]
+        })
+        cultivos.set("garbanzo", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }},
+                {id: "aditivo_garbanzo", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }},
+                {id: "aditivo_10_garbanzo", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 0.4
+                }}
+            ]
+        })
+        cultivos.set("arveja", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }},
+                {id: "aditivo_arveja", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 6
+                }},
+                {id: "aditivo_10_arveja", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 8
+                }}
+            ]
+        })
+        cultivos.set("lotus_corniculatus", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_lotus", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 6
+                }},
+                {id: "aditivo_10_lotus", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 6
+                }}
+            ]
+        })
+        cultivos.set("lotus_subbiflorus", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_lotus_subbiflorus", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 6
+                }},
+                {id: "aditivo_10_lotus_subbiflorus", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 8
+                }}
+            ]
+        })
+        cultivos.set("poroto", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_poroto", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }},
+                {id: "aditivo_10_poroto", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }}
+            ]
+        })
+        cultivos.set("poroto_mung", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_poroto_mung", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }},
+                {id: "aditivo_10_poroto_mung", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 3
+                }}
+            ]
+        })
+        cultivos.set("trebol_blanco", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_trebol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 6
+                }},
+                {id: "aditivo_10_trebol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 8
+                }}
+            ]
+        })
+        cultivos.set("trebol_rojo", {
+            aditivos: [
+                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 2
+                }},
+                {id: "aditivo_trebol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 6
+                }},
+                {id: "aditivo_10_trebol", calculo: function(kgdesemilla) {
+                    return kgdesemilla * 8
+                }}
+            ]
+        })
+        // Aca vemos cuando el valor del select cambia
+        $("#cultivo").change(function() {
+            // Nos traemos todos los labels y los ocultamos, para que no nos muestre algo que no debe
+            document.querySelectorAll('label').forEach(element => {
+                // Aca los ocultamos
+                $(`#${element.id}`).hide()
+                // Aca de-seleccionamos el checkbox
+                $(`#${element.id}_cb`).prop("checked", false)
+            })
+            // Nos traemos el cultivo que se selecciono
+            let cultivo_seleccionado = $("#cultivo").val()
+            // Checkeamos que el valor no sea nulo
+            if (cultivo_seleccionado != null) {
+                // Buscamos todos los aditivos que tiene y los mostramos para que puedan ser seleccionados
+                cultivos.get(cultivo_seleccionado).aditivos.forEach(element => {
+                    $(`#${element.id}`).show()
+                });
+            }
+        })
+        // Añadimos un event listener al click de calcular, para ver cuando se presiona el boton
+        $("#calcular").on("click", function() {
+            // Nos traemos el valor de los kg de semilla
+            let kilogramos_de_semilla = $("#semilla").val()
+            // Nos traemos el valor del combo box
+            let cultivo_seleccionado = $("#cultivo").val()
+            // Creamos una variable de texto para concaternarla
+            let texto = `Para <span style="font-weight:600;">${kilogramos_de_semilla}</span> kilogramos de ${$(`option[value="${cultivo_seleccionado}"]`).html()} necesitas:<br>`
+            // Por cada elemento del cultivo seleccionado, nos fijamos en el aditivo y si el checkbox de ese aditivo esta marcado, lo calculamos
+            cultivos.get(cultivo_seleccionado).aditivos.forEach(element => {
+                console.log(element.id)
+                console.log($(`#${element.id}_cb`))
+                console.log($(`#${element.id}_cb`).is(":checked"))
+                if ($(`#${element.id}_cb`).is(":checked")) {
+                    let cantidad_aditivo = Math.floor(element.calculo(kilogramos_de_semilla)*100)/100
+                    texto = texto + `  • <span style="font-weight:600;">${litros_o_mililitros(cantidad_aditivo).replace(".", ", ")}</span> de <span style="font-weight:600;">${labels[element.id]}</span><br>`
+                }
+            });
+            // Seteamos el resultado a texto
+            $("#resultado").html(texto)
+        })
+        $("#limpiar").on("click", function() {
+            document.querySelectorAll('label').forEach(element => {
+                $(`#${element.id}`).hide()
+                $(`#${element.id}_cb`).prop("checked", false)
+            })
+            $("#resultado").html("")
+            $("#cultivo").val("").change()
+        })
+    </script>
+</body>
+</html>
