@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    
+
     <style>
         #center {
             display: flex;
@@ -264,183 +264,183 @@
         // semilla puede ser distinto en cada cultivo. Asi mismo, los cultivos pueden tener los aditivos que sean necesarios
         cultivos.set("soja", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_10_soja", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_soja",presentation: "solida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 0.4
                 }},
-                {id: "aditivo_liquido", calculo: function(kgdesemilla) {
+                {id: "aditivo_liquido",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }}
             ]
         })
         cultivos.set("mani", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_10_mani", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_mani",presentation: "solida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 0.4
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }}
             ]
         })
         cultivos.set("maiz", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }},
-                {id: "aditivo_az", calculo: function(kgdesemilla) {
+                {id: "aditivo_az",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }}
             ]
         })
         cultivos.set("alfalfa", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_alfalfa", calculo: function(kgdesemilla) {
+                {id: "aditivo_alfalfa",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }}
             ]
         })
         cultivos.set("garbanzo", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }},
-                {id: "aditivo_garbanzo", calculo: function(kgdesemilla) {
+                {id: "aditivo_garbanzo",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }},
-                {id: "aditivo_10_garbanzo", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_garbanzo",presentation: "solida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 0.4
                 }}
             ]
         })
         cultivos.set("arveja", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }},
-                {id: "aditivo_arveja", calculo: function(kgdesemilla) {
+                {id: "aditivo_arveja",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 6
                 }},
-                {id: "aditivo_10_arveja", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_arveja",  presentation: "solida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 8
                 }}
             ]
         })
         cultivos.set("lotus_corniculatus", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_lotus", calculo: function(kgdesemilla) {
+                {id: "aditivo_lotus",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 6
                 }},
-                {id: "aditivo_10_lotus", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_lotus" ,  presentation: "solida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 6
                 }}
             ]
         })
         cultivos.set("lotus_subbiflorus", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_lotus_subbiflorus", calculo: function(kgdesemilla) {
+                {id: "aditivo_lotus_subbiflorus",presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 6
                 }},
-                {id: "aditivo_10_lotus_subbiflorus", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_lotus_subbiflorus", presentation: "solida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 8
                 }}
             ]
         })
         cultivos.set("poroto", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida",   calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol",presentation: "liquida",   calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_poroto", calculo: function(kgdesemilla) {
+                {id: "aditivo_poroto",presentation: "liquida",   calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }},
-                {id: "aditivo_10_poroto", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_poroto", presentation: "solida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }}
             ]
         })
         cultivos.set("poroto_mung", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl",presentation: "liquida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_poroto_mung", calculo: function(kgdesemilla) {
+                {id: "aditivo_poroto_mung", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }},
-                {id: "aditivo_10_poroto_mung", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_poroto_mung", presentation: "solida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 3
                 }}
             ]
         })
         cultivos.set("trebol_blanco", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_trebol", calculo: function(kgdesemilla) {
+                {id: "aditivo_trebol", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 6
                 }},
-                {id: "aditivo_10_trebol", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_trebol", presentation: "solida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 8
                 }}
             ]
         })
         cultivos.set("trebol_rojo", {
             aditivos: [
-                {id: "aditivo_tl", calculo: function(kgdesemilla) {
+                {id: "aditivo_tl", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_prosol", calculo: function(kgdesemilla) {
+                {id: "aditivo_prosol", presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 2
                 }},
-                {id: "aditivo_trebol", calculo: function(kgdesemilla) {
+                {id: "aditivo_trebol",  presentation: "liquida", calculo: function(kgdesemilla) {
                     return kgdesemilla * 6
                 }},
-                {id: "aditivo_10_trebol", calculo: function(kgdesemilla) {
+                {id: "aditivo_10_trebol",  presentation: "solida",  calculo: function(kgdesemilla) {
                     return kgdesemilla * 8
                 }}
             ]
@@ -473,14 +473,27 @@
             // Creamos una variable de texto para concaternarla
             let texto = `Para <span style="font-weight:600;">${kilogramos_de_semilla}</span> kilogramos de ${$(`option[value="${cultivo_seleccionado}"]`).html()} necesitas:<br>`
             // Por cada elemento del cultivo seleccionado, nos fijamos en el aditivo y si el checkbox de ese aditivo esta marcado, lo calculamos
+            const litros_o_mililitros = function(cantidad, presentation) {
+    if (presentation === "liquida") {
+        if ((cantidad / 1000) > 1) {
+            return `${Math.floor((cantidad / 1000) * 100) / 100} litros`;
+        } else {
+            return `${cantidad} mililitros`;
+        }
+    } else if (presentation === "solida") {
+        if ((cantidad / 1000) > 1) {
+            return `${Math.floor((cantidad / 1000) * 100) / 100} kilogramos`;
+        } else {
+            return `${cantidad} gramos`;
+        }
+    }
+};
+
             cultivos.get(cultivo_seleccionado).aditivos.forEach(element => {
-                console.log(element.id)
-                console.log($(`#${element.id}_cb`))
-                console.log($(`#${element.id}_cb`).is(":checked"))
                 if ($(`#${element.id}_cb`).is(":checked")) {
-                    let cantidad_aditivo = Math.floor(element.calculo(kilogramos_de_semilla)*100)/100
-                    texto = texto + `  • <span style="font-weight:600;">${litros_o_mililitros(cantidad_aditivo).replace(".", ", ")}</span> de <span style="font-weight:600;">${labels[element.id]}</span><br>`
-                }
+                     let cantidad_aditivo = Math.floor(element.calculo(kilogramos_de_semilla) * 100) / 100;
+                     texto += `  • <span style="font-weight:600;">${litros_o_mililitros(cantidad_aditivo, element.presentation).replace(".", ", ")}</span> de <span style="font-weight:600;">${labels[element.id]}</span><br>`;
+            }
             });
             // Seteamos el resultado a texto
             $("#resultado").html(texto)
